@@ -1,0 +1,46 @@
+<!doctype  html>
+<html ng-app="LunchCheck"">
+  <head>
+    <title>Lunch Checker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <style>
+      .message { font-size: 1.3em; font-weight: bold; }
+    </style>
+  </head>
+<body>
+   <div class="container">
+     <h1>Lunch Checker</h1>
+
+         <div ng-controller="LunchCheckController">
+          <form ng-submit="checkLunch()" novalidate>
+            <div class="form-group" ng-class="{'has-error': hasError, 'has-success': status_code == 1, 'has-warning': status_code == 2}">
+              <label class="control-label">I usually have...</label>
+              <input type="text" class="form-control" ng-model="lunch" placeholder=" water, apples, a sandwich" required>
+              <p class="help-block" ng-show="hasError">{{errorMessage}}</p>
+            </div>
+            <div class="alert alert-danger" ng-if="empty_items">
+              <p>
+                You included {{empty_items|number:0}} blank <ng-pluralize count="empty_items" when="{1:'item','other':'items'}"></ng-pluralize> 
+              </p>
+            </div>
+            <button type="submit" class="btn btn-primary">Check If Too Much</button>
+          </form>
+				<div id="lunchFeedback" ng-hide="status_code == 0" ng-cloak>
+					<h2>Your Lunch Is...</h2>
+					<div class="alert alert-success" ng-show="status_code == 1">
+					  <h4>Enjoy!</h4>
+					</div>
+					<div class="alert alert-warning" ng-show="status_code == 2">
+					  <h4>Too much!</h4>
+          </div>
+					<div class="alert alert-info" ng-show="status_code > 2">
+					  <h4>Error!!!</h4>
+					</div>
+				</div>
+			</div>
+   </div>
+    <script src="js/angular.min.js"></script>
+    <script src="js/app.js"></script> 
+</body>
+</html>
