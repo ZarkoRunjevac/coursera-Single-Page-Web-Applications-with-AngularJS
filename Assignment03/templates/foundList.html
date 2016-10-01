@@ -1,0 +1,20 @@
+
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="item in list.items">
+
+      <div class="panel panel-info">
+        <div class="panel-heading">{{ item.name }}</div>
+        <div class="panel-body">
+            <h4>Short Name: {{ item.short_name }}</h4>
+            <h5>Description: {{ item.description }}</h5>
+            
+            <h5>Price: {{ item.price_small | currency}}</h5>
+        </div>
+    </div>
+       
+     <button ng-click="list.onRemove({index: $index});">Don't want this one!</button>
+  </li>
+</ul>
+<div class="alert alert-danger" ng-if="list.hasError">{{list.errorMessage}}</div>
+
+
