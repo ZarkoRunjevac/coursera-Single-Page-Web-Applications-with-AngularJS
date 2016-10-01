@@ -52,6 +52,7 @@ function NarrowItDownController( MenuSearchService) {
         controller.hasError=true;
         controller.errorMessage="You entered empty string!";
         
+        
       } else{
         MenuSearchService.getMatchedMenuItems(controller.searchTerm).then(function(items){
         if(0===items.length){
@@ -63,6 +64,7 @@ function NarrowItDownController( MenuSearchService) {
      }
   };
   controller.reset=function(){
+    controller.found=[];
     controller.hasError = false;
     controller.errorMessage = null;
   };
